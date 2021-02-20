@@ -6,12 +6,12 @@ import (
 	"os/exec"
 )
 
-func DownloadTwitterMedia(twitterURL string, fileName string) {
-	output := fmt.Sprintf("%s.mp4", fileName)
-	cmd := exec.Command("youtube-dl", twitterURL, "--output", output)
-	err := cmd.Run()
+func DownloadTwitterMedia(twitterURL string, fileName string) error {
+	out, err := exec.Command("youtube-dl", twitterURL, "--output", fileName, "--max-filesize", "50m").Output()
+	log.Println(string(out))
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	fmt.Println(twitterURL)
+	return nil
 }

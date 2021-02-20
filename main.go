@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -26,9 +27,27 @@ func main() {
 	bot.Listen()
 }
 
+func sendErrorMessage(c telego.Conversation) {
+	c.SendMessage("Couldn't download the requested file")
+}
+
 func commandHandler(u api.Update, c telego.Conversation) telego.FlowStep {
 	twitterLink := strings.TrimPrefix(u.Message.Text, "/download ")
-	twitterdl.DownloadTwitterMedia(twitterLink, strconv.Itoa(u.UpdateID))
-	// c.SendMessage(twitterLink)
+	fileName := strconv.Itoa(u.UpdateID)
+
+	err := twitterdl.DownloadTwitterMedia(twitterLink, fileName)
+	if err != nil {
+		sendErrorMessage(c)
+		return nil
+	}
+
+	defer os.Remove(fileName)
+	content, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		sendErrorMessage(c)
+		return nil
+	}
+
+	c.SendVideo(content)
 	return nil
 }
