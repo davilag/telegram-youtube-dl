@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"strconv"
@@ -10,7 +9,7 @@ import (
 
 	"github.com/davilag/telego"
 	"github.com/davilag/telego/api"
-	"github.com/davilag/telegram-twitter-dl/twitterdl"
+	"github.com/davilag/telegram-twitter-dl/mediadl"
 	"github.com/joho/godotenv"
 )
 
@@ -27,27 +26,15 @@ func main() {
 	bot.Listen()
 }
 
-func sendErrorMessage(c telego.Conversation) {
-	c.SendMessage("Couldn't download the requested file")
-}
-
 func commandHandler(u api.Update, c telego.Conversation) telego.FlowStep {
 	twitterLink := strings.TrimPrefix(u.Message.Text, "/download ")
 	fileName := strconv.Itoa(u.UpdateID)
-
-	err := twitterdl.DownloadTwitterMedia(twitterLink, fileName)
+	file, err := mediadl.DownloadMedia(twitterLink)
 	if err != nil {
-		sendErrorMessage(c)
+		c.SendMessage("Couldn't download the requested file")
 		return nil
 	}
 
-	defer os.Remove(fileName)
-	content, err := ioutil.ReadFile(fileName)
-	if err != nil {
-		sendErrorMessage(c)
-		return nil
-	}
-
-	c.SendVideo(content)
+	c.SendVideo(fileName, file)
 	return nil
 }
