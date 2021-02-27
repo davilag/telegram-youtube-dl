@@ -31,6 +31,6 @@ jobs:
         DOCKER_USER: davilag
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       run: |
-        @echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
         docker push $DOCKER_IMAGE:latest
         docker push $DOCKER_IMAGE:$GITHUB_SHA
