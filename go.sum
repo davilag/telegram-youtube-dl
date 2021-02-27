@@ -7,8 +7,10 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davilag/telego v0.0.0-20191022194821-1f8bb79e0b41 h1:/sLCQBvKI0epocgAP32mIjffX7WVB9RrO2c52ICr46c=
 github.com/davilag/telego v0.0.0-20191022194821-1f8bb79e0b41/go.mod h1:0EQgIlCHSBCOl8DcxtA/j41EBoFIGblUCYDxqKr2AFw=
-github.com/davilag/telego v0.0.0-20210221021813-8536b26c7899 h1:+iq47x7aT+bmLPrbW317nzcIhePM1HEsTnjSs0y5ynA=
-github.com/davilag/telego v0.0.0-20210221021813-8536b26c7899/go.mod h1:FbqVVsRnZB0M/4VRqcwgmZiqCw6IwZtZVCAThvxp4SI=
+github.com/davilag/telego v0.1.2 h1:80R5en4joGIxWINpk8alHyAw64ancnNR7ybN5iNuokM=
+github.com/davilag/telego v0.1.2/go.mod h1:eQ4BRxEbo5KW+J+edRs62J2B7Ue0Z3+urjUFG5s9UPs=
+github.com/davilag/telegram-twitter-dl v0.0.0-20210221020003-c0b49f06ee29 h1:Io8kUJLS521PLBzGgt4VMghJMFiCigvo4077g+J4ILs=
+github.com/davilag/telegram-twitter-dl v0.0.0-20210221020003-c0b49f06ee29/go.mod h1:jz56Ggn9PPuLcKFFvJ570BAj5F0GZyXC6127+IIjVU0=
 github.com/go-kit/kit v0.8.0/go.mod h1:xBxKIO96dXMWWy0MnWVtmwkA9/13aqxPnvrjFYMA2as=
 github.com/go-logfmt/logfmt v0.3.0/go.mod h1:Qt1PoO58o5twSAckw1HlFXLmHsOX5/0LbT9GBnD5lWE=
 github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/melR3HDY=

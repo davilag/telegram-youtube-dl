@@ -13,11 +13,18 @@ RUN CGO_ENABLED=0 go build \
     -installsuffix 'static' \
     -o telegram-twitter-dl .
 
-FROM scratch AS final-image
+FROM python:3.9-alpine AS final-image
 
+# Install youtube-dl
+RUN wget https://yt-dl.org/downloads/latest/youtube-dl
+RUN mv youtube-dl /usr/local/bin/youtube-dl
+RUN chmod a+rx /usr/local/bin/youtube-dl
+
+# Copy binaries from go-builder
+COPY --from=go-builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=go-builder /app/.env /.env
 COPY --from=go-builder /app/telegram-twitter-dl /telegram-twitter-dl
-COPY --from=go-builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
 
 
 ENTRYPOINT [ "/telegram-twitter-dl" ]
