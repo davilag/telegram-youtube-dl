@@ -22,7 +22,6 @@ RUN chmod a+rx /usr/local/bin/youtube-dl
 
 # Copy binaries from go-builder
 COPY --from=go-builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=go-builder /app/.env /.env
 COPY --from=go-builder /app/telegram-youtube-dl /telegram-youtube-dl
 
 
