@@ -23,7 +23,7 @@ jobs:
     - name: Build docker image
       env: 
         DOCKER_IMAGE: davilag/telegram-youtube-dl
-      run: docker build -t $(DOCKER_IMAGE):latest -t $(DOCKER_IMAGE):$(GITHUB_SHA) .
+      run: docker build -t $DOCKER_IMAGE:latest -t $DOCKER_IMAGE:$GITHUB_SHA .
     # Runs a set of commands using the runners shell
     - name: Push image to DockerHub
       env:
@@ -31,6 +31,6 @@ jobs:
         DOCKER_USER: davilag
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       run: |
-        @echo $(DOCKER_PASS) | docker login -u $(DOCKER_USER) --password-stdin
-        docker push $(DOCKER_IMAGE):latest
-        docker push $(DOCKER_IMAGE):$(GITHUB_SHA)
+        @echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+        docker push $DOCKER_IMAGE:latest
+        docker push $DOCKER_IMAGE:$GITHUB_SHA
