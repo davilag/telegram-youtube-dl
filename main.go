@@ -9,13 +9,10 @@ import (
 
 	"github.com/davilag/telego"
 	"github.com/davilag/telego/api"
-	"github.com/davilag/telegram-twitter-dl/mediadl"
+	"github.com/davilag/telegram-youtube-dl/mediadl"
 )
 
 func main() {
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 	fmt.Println(os.Getenv("TELEGRAM_ACCESS_TOKEN"))
 	bot := telego.Initialise(os.Getenv("TELEGRAM_ACCESS_TOKEN"))
 
